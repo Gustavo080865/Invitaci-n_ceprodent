@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación de Graduación - CEPRODENT</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --azul-rey: #002366;
+            --blanco: #ffffff;
+            --dorado: #c5a059;
+            --sombra: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+            font-family: 'Montserrat', sans-serif;
+            background-image: radial-gradient(circle, #ffffff, #d7e1ec);
+        }
+
+        .invitation-card {
+            width: 90%;
+            max-width: 500px;
+            background-color: var(--blanco);
+            border-radius: 15px;
+            box-shadow: 0 20px 40px var(--sombra);
+            overflow: hidden;
+            text-align: center;
+            border: 8px double var(--azul-rey);
+            position: relative;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            background-color: var(--azul-rey);
+            color: var(--blanco);
+            padding: 30px 20px;
+        }
+
+        .header h1 {
+            font-family: 'Cinzel', serif;
+            margin: 0;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            margin-top: 10px;
+            font-weight: 300;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .content {
+            padding: 40px 30px;
+            color: var(--azul-rey);
+        }
+
+        .content h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--azul-rey);
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--dorado), transparent);
+            margin: 20px auto;
+            width: 80%;
+        }
+
+        .details {
+            margin: 25px 0;
+            line-height: 1.8;
+        }
+
+        .details b {
+            color: var(--azul-rey);
+            font-weight: 600;
+        }
+
+        .guest-section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid var(--dorado);
+        }
+
+        .guest-name {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin: 5px 0;
+        }
+
+        .location-box {
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .footer {
+            padding-bottom: 30px;
+        }
+
+        .btn-celebrar {
+            background-color: var(--azul-rey);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,35,102,0.3);
+        }
+
+        .btn-celebrar:hover {
+            background-color: var(--dorado);
+            transform: scale(1.05);
+        }
+
+        /* Adorno de esquina */
+        .corner {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--dorado);
+        }
+        .top-left { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+        .bottom-right { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+
+    </style>
+</head>
+<body>
+
+    <div class="invitation-card">
+        <div class="corner top-left"></div>
+        <div class="corner bottom-right"></div>
+
+        <div class="header">
+            <p>Centro de Estudios Técnicos</p>
+            <h1>CEPRODENT</h1>
+        </div>
+
+        <div class="content">
+            <h2>Ceremonia de Graduación</h2>
+            <p>Tenemos el honor de invitar a:</p>
+            
+            <div class="guest-section">
+                <span class="guest-name">1. Jairo Enrique Ortiz Palacios</span>
+                <span class="guest-name">2. Sandrid Yurany Ortiz Zea</span>
+            </div>
+
+            <p>Acompañarnos en este momento tan especial donde celebramos la culminación de una etapa de esfuerzo y dedicación.</p>
+            
+            <div class="divider"></div>
+
+            <div class="details">
+                <p><b>Fecha:</b> 20 de Diciembre</p>
+                <p><b>Hora:</b> 3:00 PM</p>
+                <p><b>Lugar:</b> Auditorio Parque Recreativo</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <button class="btn-celebrar" onclick="lanzarConfeti()">¡Celebrar Logro!</button>
+        </div>
+    </div>
+
+    <script>
+        // Función para lanzar confeti al cargar y al presionar el botón
+        function lanzarConfeti() {
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#002366', '#c5a059', '#ffffff']
+            });
+        }
+
+        // Lanzar automáticamente al cargar
+        window.onload = () => {
+            setTimeout(lanzarConfeti, 500);
+        };
+    </script>
+</body>
+</html>
